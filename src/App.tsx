@@ -7,35 +7,36 @@ function App() {
 
   const handleChange = (val: string) => {
     setData(val);
-    console.log(val);
+    console.log("1->", val);
+    uploadContent(val);
   };
 
   useEffect(() => {
     fetchContent();
-    uploadContent();
   }, []);
 
   const fetchContent = () => {
     axios
       .get("http://localhost:3000/67")
       .then((response) => {
-        console.log(response.data);
+        setData(response.data);
+        console.log("2->", response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("3->", error);
       });
   };
 
-  const uploadContent = () => {
+  const uploadContent = (val: String) => {
     axios
       .post("http://localhost:3000/67", {
-        data: "hehehe",
+        data: val,
       })
       .then((response) => {
-        console.log(response.data);
+        console.log("4->", response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("5->", error);
       });
   };
 
