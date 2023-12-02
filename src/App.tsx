@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 
 function App() {
   const [data, setData] = useState("");
+
+  const { id } = useParams();
 
   const handleChange = (val: string) => {
     setData(val);
@@ -17,7 +20,7 @@ function App() {
 
   const fetchContent = () => {
     axios
-      .get("http://localhost:3000/67")
+      .get("http://localhost:3000/" + id)
       .then((response) => {
         setData(response.data);
         console.log("2->", response.data);
@@ -29,7 +32,7 @@ function App() {
 
   const uploadContent = (val: String) => {
     axios
-      .post("http://localhost:3000/67", {
+      .post("http://localhost:3000/" + id, {
         data: val,
       })
       .then((response) => {
