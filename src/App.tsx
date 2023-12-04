@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 
+const API_ENDPOINT = "https://my-notepad-0krj.onrender.com/";
+
 function App() {
   const [data, setData] = useState("");
 
@@ -20,9 +22,9 @@ function App() {
 
   const fetchContent = () => {
     axios
-      .get("http://localhost:3000/" + id)
+      .get(API_ENDPOINT + id)
       .then((response) => {
-        setData(response.data);
+        setData(response.data.content);
         console.log("2->", response.data);
       })
       .catch((error) => {
@@ -32,7 +34,7 @@ function App() {
 
   const uploadContent = (val: String) => {
     axios
-      .post("http://localhost:3000/" + id, {
+      .post(API_ENDPOINT + id, {
         data: val,
       })
       .then((response) => {
