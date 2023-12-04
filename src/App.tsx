@@ -36,7 +36,11 @@ function App() {
         data: val,
       })
       .then((response) => {
-        console.log("4->", response.data);
+        if (response.data.error) {
+          alert("Invalid Input");
+        } else {
+          console.log("4->", response.data);
+        }
       })
       .catch((error) => {
         console.log("5->", error);
